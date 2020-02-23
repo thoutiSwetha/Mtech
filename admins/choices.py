@@ -1,0 +1,17 @@
+type_choices = (
+        ('Aerial', 'Aerial'),
+        ('Architectural', 'Architectural'),
+        ('Candid', 'Candid'),
+        ('Documentary', 'Documentary'),
+        ('Fashion', 'Fashion'),
+        ('Food', 'Food'),
+        ('Landscape', 'Landscape'),
+        ('Photojournalism', 'Photojournalism'),
+        ('Conceptual/ fine art', 'Conceptual/ fine art'),
+        ('Portraiture', 'Portraiture'),
+        ('Sport', 'Sport'),
+        ('War', 'War'),
+        ('Wildlife', 'Wildlife'),
+        ('Paintings', 'Paintings'),
+        ('others', 'others'),
+    )
