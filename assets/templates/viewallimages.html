@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block navblock %}
+{% include 'tabs.html' with active_tab='tab4' %}
+{% endblock %}
+{% block userblock %}
+<style>
+.outercas{
+height:100%;
+background:green;
+overflow:auto;
+}
+.innerclas:hover{
+color:white;
+background:green;
+}
+.innerclas{
+width:15%;
+float:left;
+padding:10px;
+background:white;
+margin:10px;
+}
+</style>
+<div class="outercas">
+{% for im in imgs %}
+<div class="innerclas">
+<img src="{{im.images.url}}" style="width:100%;height:100%"><br/>
+{{im.title}}<br/>
+{{im.uploaded_date}}<br/>
+{{im.genre}}<br/>
+{{im.sentiment}}<br/>
+{{im.ratings}}<br/>
+{{im.description}}<br/>
+<a href="{% url 'users:viewimages' im.id %}">views</a>
+</div>
+{% endfor %}
+</div>
+{% endblock %}

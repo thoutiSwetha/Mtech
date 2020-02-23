@@ -1,0 +1,62 @@
+{% extends 'admins/base.html' %}
+{% block navblock %}
+{% include 'admins/tabs.html' with active_tab='tab3' %}
+{% endblock %}
+{% block adminsblock %}
+<style>
+table{
+border-collapse:collapse;
+}
+.highli{
+color:white;
+font-size:20px;
+}
+</style>
+
+    <table>
+        <tr><td>
+            <table>
+                <tr>
+                    <td colspan="3" align="center"><img src="{{fb1.images.url}}" style="height:35%;width:50%;"></td>
+                </tr>
+                <tr>
+                    <td align="right"><label style="color:white">Title</label></td>
+                    <td align="center"><label style="color:white">:</label></td>
+                    <td><label style="color:white">{{fb1.title}}</label></td>
+                </tr>
+                <tr>
+                    <td align="right"><label style="color:white">Uploaded Date</label></td>
+                    <td align="center"><label style="color:white;;">:</label></td>
+                    <td><label style="color:white">{{fb1.uploaded_date}}</label></td>
+                </tr>
+                <tr>
+                    <td align="right"><label style="color:white">Genre</label></td>
+                    <td align="center"><label style="color:white;;">:</label></td>
+                    <td><label style="color:white">{{fb1.genre}}</label></td>
+                </tr>
+                <tr>
+                    <td align="right"><label style="color:white">Description</label></td>
+                    <td align="center"><label style="color:white">:</label></td>
+                    <td><label style="color:white">{{fb1.description}}</label></td>
+                </tr>
+                <tr>
+                    <td align="right"><label class="highli">Over All Rating</label></td>
+                    <td align="center"><label class="highli">:</label></td>
+                    <td>{%for f in fb%}
+                            <label class="highli">{{f.ratings}}</label>
+                        {%endfor%}
+                    </td>
+                </tr>
+            </table>
+        </td></tr>
+        <tr><td align="center">
+        <table>
+        <tr style="background:yellow;"><th colspan="3">Comments</th></tr>
+        {% for df in fbs %}
+            <tr><td><label style="color:white;">{{df.user}}</label></td><td><label style="color:white;">:</label></td><td><label style="color:white;">{{df.comments}}</label></td>
+        {% endfor %}
+        </tr>
+        </table>
+        </td></tr>
+    </table>
+{% endblock %}

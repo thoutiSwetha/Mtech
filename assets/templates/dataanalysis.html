@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block navblock %}
+{% include 'tabs.html' with active_tab='tab3' %}
+{% endblock %}
+{% block userblock %}
+<style>
+p{
+color:white;
+}
+.positives{
+padding:3px;
+color:white;
+text-transform:uppercase;
+background:green;
+}
+.negatives{
+background:red;
+}
+.notin{
+color:white;
+}
+</style>
+<table style="margin:auto;">
+<tr>
+<td><p>Title</p></td>
+<td><p>{{doc.title}}</p></td>
+</tr>
+<tr>
+<td><p>Author</p></td>
+<td><p>{{doc.author}}</p></td>
+</tr>
+<tr>
+<td><p>Genre</p></td>
+<td><p>{{doc.genre}}</p></td>
+</tr>
+<tr>
+<td><p>Positive Words</p></td>
+<td><p style="word-wrap: break-word;width: 25em;float:left;">{{doc.positive_words}}</p></td>
+</tr>
+<tr>
+<td><p>Negative Words</p></td>
+<td><p style="word-wrap: break-word;width: 25em;float:left;">{{doc.negative_words}}</p></td>
+</tr>
+<tr>
+<td><p>Sentiment is</p>
+{% if posit > negat %}
+     <td><p style="padding:10px;background:green;color:white;">Positive</p></td>
+{% elif posit == negat %}
+    <td><p style="padding:10px;background:Yellow;color:white;">Nutral</p></td>
+{% else %}
+    <td><p style="padding:10px;background:red;color:white;">Negative</p></td>
+{% endif %}
+</tr>
+<tr>
+<td><p>Document</p></td>
+<td><p>{{doc.document}}</p></td>
+</tr>
+<tr>
+<td><p>Total Words</p></td>
+<td><p>{{total}}</p></td>
+</tr>
+<tr>
+<td><p>Number of Positive Word Count</p></td>
+<td><p>{{posit}}</p></td>
+</tr>
+<tr>
+<td><p>Number of Negative Word Count</p></td>
+<td><p>{{negat}}</p></td>
+</tr>
+<tr>
+</table>
+
+
+
+{% for d in my_list %}
+    {% if d in positw %}
+        <span class="positives">{{d}}</span>
+    {% elif d in negatw %}
+        <span class="negatives">{{d}}</span>
+    {% else %}
+        <span class="notin">{{d}}</span>
+    {% endif %}
+{% endfor %}
+{% endblock %}

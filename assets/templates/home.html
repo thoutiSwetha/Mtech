@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% block navblock %}
+{% include 'tabs.html' with active_tab='tab1' %}
+{% endblock %}
+{% block userblock %}
+<style>
+table{
+border-collapse:collapse;
+}
+.docdiv:hover{
+height:100%;
+width:100%;
+}
+.imgdiv:hover{
+height:100%;
+width:100%;
+margin-top:-350px;
+}
+.docdiv{
+overflow:auto;
+height:50%;
+width:100%;
+}
+.imgdiv{
+overflow:auto;
+height:50%;
+}
+th{
+height:100px;
+background:#74BF8E;
+}
+tr{
+background:white;
+}
+th{
+border-right:2px solid white;
+}
+tr:last-child{
+border-bottom:5px solid #74BF8E;
+}
+td:first-child{
+border-left:5px solid #74BF8E;
+}
+td:last-child{
+border-right:5px solid #74BF8E;
+}
+td{
+border-right:2px solid #74BF8E;
+}
+tr:hover{
+background:#74BF8E;
+color:white;
+}
+</style>
+
+<div class="docdiv">
+    <table style="border:1px solid white;overflow:auto;">
+    <tr>
+    <th>Title</th>
+    <th>Author</th>
+    <th>Uplaoded Date</th>
+    <th>Genre</th>
+    <th>Positive Words</th>
+    <th>Negative Words</th>
+    <th>Total Words</th>
+    <th>Positive Words Count</th>
+    <th>Negative Words Count</th>
+    <th>Documents</th>
+    </tr>
+    {% for d in doc %}
+    <tr>
+        <td align="center">{{d.title}}</td>
+        <td align="center">{{d.author}}</td>
+        <td align="center">{{d.uploaded_date}}</td>
+        <td align="center">{{d.genre}}</td>
+        <td align="center"><label style="word-wrap: break-word;width: 10em;float:left;">{{d.positive_words}}</label></td>
+        <td align="center"><label style="word-wrap: break-word;width:10em;float:left;">{{d.negative_words}}</label></td>
+        <td align="center">{{d.total_words}}</td>
+        <td align="center">{{d.positive_words_count}}</td>
+        <td align="center">{{d.negative_words_count}}</td>
+        <td align="center"><label style="word-wrap: break-word;width:10em;float:left;">{{d.document}}</label></td>
+        </td>
+    {% endfor %}
+    
+    </tr>
+    </table>
+</div>
+<div class="imgdiv">
+    <table style="width:100%;height:300px;border:1px solid white;margin-top:10px;overflow:auto;">
+    <tr>
+        <th align="center">Image</th>
+        <th align="center">Title</th>
+        <th align="center">Uploaded Date</th>
+        <th align="center">Genre</th>
+        <th align="center">Sentiment</th>
+        <th align="center">Overall Ratings</th>
+        <th align="center">Description</th>
+    </tr>
+    {% for i in img %}
+    <tr>
+        <td align="center"><img src="{{i.images.url}}" style="width:100px;height:100px;"></td>
+       <td align="center">{{i.title}}</td>
+        <td align="center">{{i.uploaded_date}}</td>
+       <td align="center">{{i.genre}}</td>
+        <td align="center">{{i.sentiment}}</td>
+        <td align="center">{{i.overallratings}}</td>
+       <td align="center">{{i.description}}</td>
+    {% endfor %}
+    </tr>
+    </table>
+</div>
+
+{% endblock %}

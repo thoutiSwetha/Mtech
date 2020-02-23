@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block navblock %}
+{% include 'tabs.html' with active_tab='tab5' %}
+{% endblock %}
+{% block userblock %}
+{% load staticfiles %}
+<script>
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	theme:"light1",
+	animationEnabled: true,
+	title:{
+		text: "Document Analysis"
+	},
+	axisY :{
+		includeZero: false,
+		title: "Documents Number",
+	},
+	toolTip: {
+		shared: "true"
+	},
+	legend:{
+		cursor:"pointer",
+		itemclick : toggleDataSeries
+	},
+	data: [{
+		type: "spline",
+		visible: false,
+		showInLegend: true,
+		name: "Total Words",
+		dataPoints: [
+        {% for d in doc %}
+            { label: "{{d.title}}",y: {{d.total_words}} },
+        {% endfor %}
+		]
+	},
+	{
+		type: "spline", 
+		showInLegend: true,
+		visible: false,
+		name: "positive Words",
+		dataPoints: [
+			{% for d in doc %}
+            { label: "{{d.title}}",y: {{d.positive_words_count}} },
+        {% endfor %}
+		]
+	},
+	{
+		type: "spline",
+		visible: false,
+		showInLegend: true,
+		name: "Negative Words",
+		dataPoints: [
+			{% for d in doc %}
+            { label: "{{d.title}}",y: {{d.negative_words_count}} },
+        {% endfor %}
+		]
+	},
+	{
+		type: "spline", 
+		showInLegend: true,
+		name: "Nutral Words",
+		dataPoints: [
+			{% for d in doc %}
+            { label: "{{d.title}}",y: {{d.total_words}}-({{d.positive_words_count}}+{{d.negative_words_count}}) },
+        {% endfor %}
+		]
+	}]
+});
+chart.render();
+
+function toggleDataSeries(e) {
+	if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible ){
+		e.dataSeries.visible = false;
+	} else {
+		e.dataSeries.visible = true;
+	}
+	chart.render();
+}
+
+}
+</script>
+<div style="padding:40px;">
+<a href="{% url 'users:chart' %}" style="color:white;text-decoration:none;">Bar cart</a>
+<a href="{% url 'users:linechart' %}"  style="color:white;text-decoration:none;background:green;padding:10px;border-radius:5px;">Line cart</a>
+</div>
+
+<div id="chartContainer" style="height: 370px; max-width: 920px; margin: 0px auto;"></div>
+<script src="{% static 'js/canvasjs.min.js' %}"></script>
+{% endblock %}

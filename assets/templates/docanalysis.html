@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block navblock %}
+{% include 'tabs.html' with active_tab='tab3' %}
+{% endblock %}
+{% block userblock %}
+<style>
+tr{
+background:white;
+border:1px solid white;
+}
+td{
+height:50px;
+}
+table{
+border-collapse:collapse;
+}
+th{
+background:#74BF8E;
+padding:15px;
+color:white;
+}
+tr:hover{
+background:#E5E5E5;
+}
+a{
+color:green;
+text-decoration:none;
+}
+</style>
+<table>
+<tr>
+<th>Title</th>
+<th>Author</th>
+<th>Genre</th>
+<th>Positive Words</th>
+<th>Negative Words</th>
+<th>Document</th>
+<th>Analysis</th>
+<th>Chart Analysis</th>
+</tr>
+{% for d in doc %}
+<tr>
+<td align="center">{{d.title}}</td>
+<td align="center">{{d.author}}</td>
+<td align="center">{{d.genre}}</td>
+<td align="center"><label style="word-wrap: break-word;width: 10em;float:left;">{{d.positive_words}}</label></td>
+<td align="center"><label style="word-wrap: break-word;width: 10em;float:left;">{{d.negative_words}}</label></td>
+<td align="center">{{d.document}}</td>
+<td align="center"><a href="{% url 'users:dataanalysis' d.id %}" >analysis</a></td>
+<td align="center"><a href="{% url 'users:datainchart' d.id %}" >chart</a></td>
+{% endfor %}
+</tr>
+</table>
+{% endblock %}

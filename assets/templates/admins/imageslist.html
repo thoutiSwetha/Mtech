@@ -1,0 +1,40 @@
+{% extends 'admins/base.html' %}
+{% block navblock %}
+{% include 'admins/tabs.html' with active_tab='tab4' %}
+{% endblock %}
+{% block adminsblock %}
+<style>
+.tblcl{
+width:100%;
+border-collapse:collapse;
+margin:auto;
+}
+th{
+height:100px;
+background:#74BF8E;
+}
+td{
+background:white;
+}
+</style>
+<table class="tblcl">
+        <tr>
+            <th>Title</th>
+            <th>Uploaded Date</th>
+            <th>Genre</th>
+            <th>Description</th>
+            <th>Image</th>
+            <th>Overall Ratings</th>
+        </tr>
+		{%for f in fb%}
+        <tr>
+        <td align="center">{{f.title}}</td>
+        <td align="center">{{f.uploaded_date}}</td>
+        <td align="center">{{f.genre}}</td>
+        <td align="center">{{f.description}}</td>
+        <td align="center"><img src="{{f.images.url}}" style="height:100px;width:100px" /></td>
+        <td align="center"><a href="{% url 'admins:imagesentiment' f.id %}">View Sentiment</a></td>
+        {%endfor%}
+        </tr>
+</table>
+{% endblock %}

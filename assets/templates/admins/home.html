@@ -1,0 +1,38 @@
+{% extends 'admins/base.html' %}
+{% block navblock %}
+{% include 'admins/tabs.html' with active_tab='tab1' %}
+{% endblock %}
+{% block adminsblock %}
+<style>
+.outercas{
+height:100%;
+background:#74BF8E;
+overflow:auto;
+}
+.innerclas:hover{
+color:white;
+background:#74BF8E;
+}
+.innerclas{
+width:15%;
+float:left;
+padding:10px;
+background:white;
+margin:10px;
+}
+</style>
+<p style="color:white">welcome <span style="color:white">{{user}}</span> !!!</p><br/><br/><br/>
+<div class="outercas">
+{% for im in imgs %}
+<div class="innerclas">
+<img src="{{im.images.url}}" style="width:100px;height:100px;"><br/>
+{{im.title}}<br/>
+{{im.uploaded_date}}<br/>
+{{im.genre}}<br/>
+{{im.sentiment}}<br/>
+{{im.ratings}}<br/>
+{{im.description}}
+</div>
+{% endfor %}
+</div>
+{% endblock %}

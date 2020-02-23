@@ -1,0 +1,34 @@
+<nav>
+			<ul>
+				<li>
+					<a href="{% url 'users:home' %}" class="{% if active_tab == 'tab1' %} current{% endif %}">
+						<span data-text="Home">Home</span>
+					</a>
+				</li>
+				<li>
+					<a href="{% url 'users:uploaddoc' %}" class="{% if active_tab == 'tab2' %} current{% endif %}">
+						<span data-text="Upload Documet">Upload Documet</span>
+					</a>
+				</li>
+				<li>
+					<a href="#" class="{% if active_tab == 'tab3' %} current{% endif %}">
+						<span data-text="Document Analysis">Document Analysis</span>
+					</a>
+				</li>
+				<li>
+					<a href="#" class="{% if active_tab == 'tab4' %} current{% endif %}">
+						<span data-text="Images">Images</span>
+					</a>
+				</li>
+				<li>
+					<a href="#" class="{% if active_tab == 'tab5' %} current{% endif %}">
+						<span data-text="Charts">Charts</span>
+					</a>
+				</li>
+				<li>
+					<a href="{% url 'users:logout' %}" class="{% if active_tab == 'tab6' %} current{% endif %}">
+						<span data-text="Logout">Logout</span>
+					</a>
+				</li>
+			</ul>
+		</nav>

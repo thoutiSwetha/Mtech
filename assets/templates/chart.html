@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% block navblock %}
+{% include 'tabs.html' with active_tab='tab5' %}
+{% endblock %}
+{% block userblock %}
+{% load staticfiles %}
+<script>
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	title:{
+		text: "Report for Document Analysis"
+	},	
+	axisY: {
+		title: "Total Number Of Words",
+		titleFontColor: "#4F81BC",
+		lineColor: "#4F81BC",
+		labelFontColor: "#4F81BC",
+		tickColor: "#4F81BC"
+	},
+	axisY2: {
+		title: "Positive / Negative Words in document",
+		titleFontColor: "#C0504E",
+		lineColor: "#C0504E",
+		labelFontColor: "#C0504E",
+		tickColor: "#C0504E"
+	},	
+	toolTip: {
+		shared: true
+	},
+	legend: {
+		cursor:"pointer",
+		itemclick: toggleDataSeries
+	},
+	data: [{
+		type: "column",
+		name: "Total Word In Document",
+		legendText: "Total Words",
+		showInLegend: true, 
+		dataPoints:[
+        {% for d in doc %}
+            { label: "{{d.title}}",y: {{d.total_words}} },
+        {% endfor %}
+/*			{ label: "Saudi", y: 266.21 },
+			{ label: "Venezuela", y: 302.25 },
+			{ label: "Iran", y: 157.20 },
+			{ label: "Iraq", y: 148.77 },
+			{ label: "Kuwait", y: 101.50 },
+			{ label: "UAE", y: 97.8 }
+	*/	]
+	},
+	{
+		type: "column",	
+		name: "Number of Positive Words",
+		legendText: "Positive Words",
+		axisYType: "secondary",
+		showInLegend: true,
+		dataPoints:[
+        {% for d in doc %}
+            { label: "{{d.title}}",y: {{d.positive_words_count}} },
+        {% endfor %}
+			/*{ label: "Saudi", y: 10.46 },
+			{ label: "Venezuela", y: 2.27 },
+			{ label: "Iran", y: 3.99 },
+			{ label: "Iraq", y: 4.45 },
+			{ label: "Kuwait", y: 2.92 },
+			{ label: "UAE", y: 3.1 }*/
+		]
+	},
+	{
+		type: "column",	
+		name: "Number of Negative Words",
+		legendText: "Negative Words",
+		axisYType: "secondary",
+		showInLegend: true,
+		dataPoints:[
+        {% for d in doc %}
+            { label: "{{d.title}}",y: {{d.negative_words_count}} },
+        {% endfor %}
+			/*{ label: "Saudi", y: 10.46 },
+			{ label: "Venezuela", y: 2.27 },
+			{ label: "Iran", y: 3.99 },
+			{ label: "Iraq", y: 4.45 },
+			{ label: "Kuwait", y: 2.92 },
+			{ label: "UAE", y: 3.1 }*/
+		]
+	},
+	{
+		type: "column",	
+		name: "Number of Nutral Words",
+		legendText: "Nutral Words",
+		axisYType: "secondary",
+		showInLegend: true,
+		dataPoints:[
+        {% for d in doc %}
+            { label: "{{d.title}}",y: {{d.total_words}}-({{d.positive_words_count}}+{{d.negative_words_count}}) },
+        {% endfor %}
+			/*{ label: "Saudi", y: 10.46 },
+			{ label: "Venezuela", y: 2.27 },
+			{ label: "Iran", y: 3.99 },
+			{ label: "Iraq", y: 4.45 },
+			{ label: "Kuwait", y: 2.92 },
+			{ label: "UAE", y: 3.1 }*/
+		]
+	}]
+});
+chart.render();
+
+function toggleDataSeries(e) {
+	if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+		e.dataSeries.visible = false;
+	}
+	else {
+		e.dataSeries.visible = true;
+	}
+	chart.render();
+}
+
+}
+</script>
+<div style="padding:40px;">
+<a href="{% url 'users:chart' %}" style="color:white;text-decoration:none;background:green;padding:10px;border-radius:5px;">Bar cart</a>
+<a href="{% url 'users:linechart' %}"  style="color:white;text-decoration:none;">Line cart</a>
+</div>
+<div id="chartContainer" style="height: 370px; max-width: 920px; margin: 0px auto;"></div>
+<script src="{% static 'js/canvasjs.min.js' %}"></script>
+{% endblock %}

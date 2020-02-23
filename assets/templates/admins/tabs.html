@@ -1,0 +1,34 @@
+<nav>
+			<ul>
+				<li>
+					<a href="{% url 'admins:home' %}" class="{% if active_tab == 'tab1' %} current{% endif %}">
+						<span data-text="Home">Home</span>
+					</a>
+				</li>
+				<li>
+					<a href="{% url 'admins:uploadimg' %}" class="{% if active_tab == 'tab2' %} current{% endif %}">
+						<span data-text="Upload Images">Upload Images</span>
+					</a>
+				</li>
+				<li>
+					<a href="{% url 'admins:commentsandratings' %}" class="{% if active_tab == 'tab3' %} current{% endif %}">
+						<span data-text="Comments and Ratings">Comments and Ratings</span>
+					</a>
+				</li>
+				<li>
+					<a href="{% url 'admins:imageslist' %}" class="{% if active_tab == 'tab4' %} current{% endif %}">
+						<span data-text="Sentiments">Sentiments</span>
+					</a>
+				</li>
+				<li>
+					<a href="{% url 'admins:chart' %}" class="{% if active_tab == 'tab5' %} current{% endif %}">
+						<span data-text="Charts">Charts</span>
+					</a>
+				</li>
+				<li>
+					<a href="{% url 'admins:logout' %}" class="{% if active_tab == 'tab6' %} current{% endif %}">
+						<span data-text="Logout">Logout</span>
+					</a>
+				</li>
+			</ul>
+		</nav>

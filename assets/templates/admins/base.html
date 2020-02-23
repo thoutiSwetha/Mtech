@@ -1,0 +1,33 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en" >
+	<head>
+		<meta charset="UTF-8" />
+		<title>CSS3 Menu Gradient Text</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">  
+		<link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+        <style>
+        body{
+        background:#035671;
+        width:auto;
+        height:auto;
+        }
+        .bgrd{
+        padding:50px;
+        margin-left:5%;
+        width:80%;
+        height:70%;
+        overflow:auto;
+        }
+        </style>
+	</head>
+	<body>
+    {% block navblock %}
+		{% endblock %}
+        <div style="z-index:100;position:absolute;" class="bgrd">
+		{% block adminsblock %}
+		{% endblock %}
+		</div>
+		<script  src="{% static 'js/index.js' %}"></script>
+	</body>
+</html>

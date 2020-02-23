@@ -1,0 +1,40 @@
+{% extends 'admins/base.html' %}
+{% block navblock %}
+{% include 'admins/tabs.html' with active_tab='tab4' %}
+{% endblock %}
+{% block adminsblock %}
+{% load staticfiles %}
+<style>
+tr{
+height:50px;
+}
+</style>
+<img src="{% static 'images/im3.gif' %}" style="width:250px;margin-left:50px;margin-top:15px;float:left;">
+<div style="padding:50px;background:black">
+<table style="margin-left:400px;border-collapse:collapse;background:black;">
+    <tr>
+        <td align="right"><label style="color:white">Number Of Positive Words</label></td>
+        <td><label style="color:white">:</label></td>
+        <td><label style="color:white">{{pos}}</label></td>
+    </tr>
+    <tr>
+        <td align="right"><label style="color:white">Number Of Positive Words</label></td>
+        <td><label style="color:white">:</label></td>
+        <td><label style="color:white">{{neg}}</label></td>
+    </tr>
+    <tr>
+        <td align="right"><label style="color:white">Number Of Positive Words</label></td>
+        <td><label style="color:white">:</label></td>
+        <td><label style="color:white">{{oth}}</label></td>
+    </tr>
+    <tr style="background:yellow;">
+        <td align="center"><label style="color:black">Sentiment</label></td>
+        <td><label style="color:black">:</label></td>
+        <td><label style="color:black;">{{fbe.sentiment}}</label></td>
+    </tr>
+</table>
+</div>
+
+
+<img src="{% static 'images/im1.png' %}" style="margin-top:100px;">
+{% endblock %}

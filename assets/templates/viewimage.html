@@ -1,0 +1,17 @@
+{% extends 'admins/base.html' %}
+{% block navblock %}
+{% include 'admins/tabs.html' with active_tab='tab1' %}
+{% endblock %}
+{% block adminsblock %}
+		
+welcome {{user}} !!!<br/>
+{% for im in imgs %}
+<img src="{{im.images.url}}" style="width:100px;height:100px;"><br/>
+{{im.title}}<br/>
+{{im.uploaded_date}}<br/>
+{{im.genre}}<br/>
+{{im.sentiment}}<br/>
+{{im.ratings}}<br/>
+{{im.description}}
+{% endfor %}
+{% endblock %}

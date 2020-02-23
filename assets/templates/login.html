@@ -1,0 +1,65 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Simple Login Form Responsive Widget Template :: w3layouts</title>
+<link href="{% static 'login/css/style.css' %}" rel='stylesheet' type='text/css' />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Simple Login Form,Login Forms,Sign up Forms,Registration Forms,News latter Forms,Elements"./>
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+</script>
+<!--webfonts-->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700' rel='stylesheet' type='text/css'>
+<!--//webfonts-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+		<link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+        
+        <style>
+        input[type=text]:hover{
+        cursor:pointer;
+        }
+        @font-face 
+        {
+            font-family: myFirstFont;
+            src: url({% static 'fonts/font2.ttf' %});
+        }
+        </style>
+</head>
+<body>
+<h1 style="font-size:35px;font-family:myFirstFont">Bag-of-Discriminative-Words (BoDW) Representation via Topic Modeling</h1>
+    
+        
+	
+        <div class="login" style="margin-top:100px !important;margin-right:200px;margin-top:-300px;">
+			<div class="ribbon-wrapper h2 ribbon-red">
+				<div class="ribbon-front">
+					<h2>User Login</h2>
+				</div>
+				<div class="ribbon-edge-topleft2"></div>
+				<div class="ribbon-edge-bottomleft"></div>
+			</div>
+			<form method="post">
+            {% csrf_token %}
+				<ul>
+					<li>
+                    {{form.username}}<a href="#" class=" icon user"></a>
+					</li>
+					 <li>
+                     {{form.password}}<a href="#" class=" icon lock"></a>
+					</li>
+				</ul>
+			<div class="submit">
+				<input type="submit" name="submit" onclick="myFunction()" value="Log in" >
+			</div>
+            </form>
+		</div>
+        <a href="{% url 'users:registration' %}" style="margin-left:500px;color:white;"><span style="background:#00B3EF;padding:5px;border-radius:10px;">New User Here ??? Need Registration?</span><br/><br/><span style="border-radius:10px;margin-left:565px;font-size:25px;text-transform:uppercase;background:#00B3EF;padding:5px;">Click Here</span></a>
+        <div style="margin-top:100px;">
+            <marquee behavior="alternate"><p style="color:white;font-size:30px;">Bag-of-Discriminative-Words (BoDW)
+Representation via Topic Modeling</p></marquee>
+        </div>
+        
+        <script  src="{% static 'js/index.js' %}"></script>
+</body>
+</html>

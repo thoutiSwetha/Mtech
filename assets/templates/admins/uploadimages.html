@@ -1,0 +1,42 @@
+{% extends 'admins/base.html' %}
+{% block navblock %}
+{% include 'admins/tabs.html' with active_tab='tab2' %}
+{% endblock %}
+{% block adminsblock %}
+{% load staticfiles %}
+<style>
+select,input[type=text],input[type=file]{
+width:200px;
+}
+table{
+padding:10px;
+width:50%;
+border:1px solid white;
+}
+</style>
+<img src="{% static 'images/uploadim2.gif' %}" style="float:right;width:500px;">
+<form method="post" enctype="multipart/form-data">
+{% csrf_token %}
+<table style="">
+    <tr>
+        <td align="center" height="100px"><label style="color:white">Title</label></td>
+        <td align="center" height="100px">{{form.title}}</td>
+    </tr>
+    <tr>
+        <td align="center" height="100px"><label style="color:white">Genre</label></td>
+        <td align="center" height="100px">{{form.genre}}</td>
+    </tr>
+    <tr>
+        <td align="center" height="100px"><label style="color:white">Description</label></td>
+        <td align="center" height="100px">{{form.description}}</td>
+    </tr>
+    <tr>
+        <td align="center" height="100px"><label style="color:white">Images</label></td>
+        <td align="center" height="100px">{{form.images}}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center" height="100px"><input type="submit" name="submit"></td>
+    </tr>
+</table>
+</form>
+{% endblock %}
